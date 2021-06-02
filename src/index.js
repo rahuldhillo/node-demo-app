@@ -6,15 +6,12 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  next();
-  res.send("New hello 1234 world");
-});
+app.get("/");
 
 app.post("/post-anything", (req, res, next) => {
   const { name, role } = req.body;
   console.log({ name, role });
-  res.send(`The entered data is ${name} and ${role}`);
+  res.status(200).json(`The entered data is ${name} and ${role}`);
 });
 
 const DB_CONNECTION_STRING = `mongodb+srv://demo-node-crud:59CkPievhIc1HmsG@cluster0.ranyp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
